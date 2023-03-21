@@ -53,3 +53,25 @@ def addTransaksiTabung(data):
 
     conn.commit()
     conn.close()
+
+
+def addTransaksiTarik(data):
+    rekening_id = getRekeningId(data.no_rekening)
+    waktu_transaksi = datetime.now()
+    saldo = getSaldo(data.no_rekening)
+    nominal = data.nominal
+    updatedSaldo = saldo - nominal
+
+
+    conn = databaseConnect()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        'insert into transaksi(rekening_id,  nominal, tipe, waktu) values (%s, %s, %s, %s)',
+        (rekening_id, nominal, 'D', waktu_transaksi)
+    )
+
+    updateSaldo(data.no_rekening, updatedSaldo)
+
+    conn.commit()
+    conn.close()
