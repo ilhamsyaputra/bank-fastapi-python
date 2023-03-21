@@ -20,7 +20,7 @@ async def addNasabahHandler(data: Nasabah, response: Response):
         rekeningService.addRekening(id, no_rekening)
 
         return {
-            f'success': 'true',
+            'success': 'true',
             'message': 'nasabah baru berhasil ditambahkan',
             'data': {
                 'no_rekening': no_rekening
@@ -35,8 +35,9 @@ async def addNasabahHandler(data: Nasabah, response: Response):
         }
     
     except Exception as e:
+        response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         print(e)
         return {
             'success': 'false',
-            'message': 'terjadi error, harap hubungi pengembang'
+            'message': 'terjadi server error, harap hubungi pengembang'
         }

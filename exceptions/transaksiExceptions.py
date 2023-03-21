@@ -1,0 +1,2 @@
+class RekeningNotFoundError(Exception):
+    pass
