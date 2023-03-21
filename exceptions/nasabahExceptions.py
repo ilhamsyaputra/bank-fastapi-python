@@ -1,0 +1,2 @@
+class NasabahDuplicateError(Exception):
+    pass
