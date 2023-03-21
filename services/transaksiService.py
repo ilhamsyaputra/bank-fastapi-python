@@ -33,6 +33,21 @@ def updateSaldo(no_rekening, saldo):
     )
     conn.commit()
 
+
+def getMutasiByRekening(no_rekening):
+    rekening_id = getRekeningId(no_rekening)
+
+    conn = databaseConnect()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        'select * from transaksi where rekening_id = %s',
+        (rekening_id,)
+    )
+
+    return cursor.fetchall()
+
+
 def addTransaksiTabung(data):
     rekening_id = getRekeningId(data.no_rekening)
     waktu_transaksi = datetime.now()
