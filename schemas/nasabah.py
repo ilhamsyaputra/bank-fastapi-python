@@ -1,6 +1,4 @@
-from pydantic import BaseModel, Field
-from uuid import UUID, uuid4
-from datetime import datetime
+from pydantic import BaseModel
 
 class Nasabah(BaseModel):
     nama: str
